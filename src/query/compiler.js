@@ -27,6 +27,13 @@ class QueryCompilerClickhouse extends QueryCompiler {
             (wheres ? ` ${wheres}` : '');
     }
 
+    delete() {
+        const { tableName } = this;
+        const wheres = this.where();
+        return `ALTER TABLE ${tableName} DELETE WHERE ` +
+            (wheres ? ` ${wheres}` : '');
+    }
+
     // Compiles a `columnInfo` query.
     columnInfo() {
         const column = this.single.columnInfo;
